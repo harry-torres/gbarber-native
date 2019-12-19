@@ -2,7 +2,7 @@ import { Alert } from 'react-native';
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 
 import api from '~/services/api';
-import actions, { signInSuccess, signFailure } from './actions';
+import actions, { signInSuccess, signUpSuccess, signFailure } from './actions';
 
 export function* signIn({ payload }) {
   try {
@@ -43,8 +43,13 @@ export function* signUp({ payload }) {
       name,
       email,
       password,
-      provider: true,
     });
+
+    yield put(signUpSuccess());
+    Alert.alert(
+      'Sucesso',
+      'Cadastro realizado com sucesso. Favor realizar o login na tela de login, clicando sobre o botão "Já tenho conta".'
+    );
 
     // history.push('/');
   } catch (err) {

@@ -20,14 +20,21 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case actions.SIGN_UP_SUCCESS: {
+        draft.loading = false;
+        break;
+      }
       case actions.SIGN_FAILURE: {
         draft.loading = false;
         break;
       }
       case actions.SIGN_OUT: {
-        console.tron.log('auth reducer');
         draft.token = null;
         draft.signed = false;
+        break;
+      }
+      case actions.SIGN_UP_REQUEST: {
+        draft.loading = true;
         break;
       }
       default:
