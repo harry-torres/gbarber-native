@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import Background from '~/components/Background';
 import { signInRequest } from '~/store/modules/auth/actions';
 
 import {
@@ -27,43 +26,41 @@ export default function SignIn({ navigation }) {
   }
 
   return (
-    <Background>
-      <Container>
-        <Image source={logo} />
+    <Container>
+      <Image source={logo} />
 
-        <Form>
-          <FormInput
-            icon="mail-outline"
-            keyboardType="email-address"
-            autoCorrect={false}
-            autoCapitalize="none"
-            placeholder="Digite seu email"
-            returnKeyType="next"
-            onSubmitEditing={() => passwordRef.current.focus()}
-            value={email}
-            onChangeText={setEmail}
-          />
+      <Form>
+        <FormInput
+          icon="mail-outline"
+          keyboardType="email-address"
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholder="Digite seu email"
+          returnKeyType="next"
+          onSubmitEditing={() => passwordRef.current.focus()}
+          value={email}
+          onChangeText={setEmail}
+        />
 
-          <FormInput
-            icon="lock-outline"
-            secureTextEntry
-            placeholder="Sua senha secreta"
-            ref={passwordRef}
-            returnKeyType="send"
-            onSubmitEditing={handleSubmit}
-            value={password}
-            onChangeText={setPassword}
-          />
-          <SubmitButton loading={loading} onPress={handleSubmit}>
-            Acessar
-          </SubmitButton>
-        </Form>
+        <FormInput
+          icon="lock-outline"
+          secureTextEntry
+          placeholder="Sua senha secreta"
+          ref={passwordRef}
+          returnKeyType="send"
+          onSubmitEditing={handleSubmit}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <SubmitButton loading={loading} onPress={handleSubmit}>
+          Acessar
+        </SubmitButton>
+      </Form>
 
-        <SignLink onPress={() => navigation.navigate('SignUp')}>
-          <SignLinkText>Criar conta gratuita</SignLinkText>
-        </SignLink>
-      </Container>
-    </Background>
+      <SignLink onPress={() => navigation.navigate('SignUp')}>
+        <SignLinkText>Criar conta gratuita</SignLinkText>
+      </SignLink>
+    </Container>
   );
 }
 
